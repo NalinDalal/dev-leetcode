@@ -18,3 +18,11 @@ docker run --name codeforces \
           -p 5432:5432 \
           -d postgres:16
 ```
+
+you can stop/start the container
+
+```sh
+docker start/stop codeforces
+```
+
+we will do auth based on email link
