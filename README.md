@@ -26,3 +26,5 @@ docker start/stop codeforces
 ```
 
 we will do auth based on email link
+
+[ref](https://github.com/code100x/contest-platform/tree/main)
