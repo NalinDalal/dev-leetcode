@@ -60,12 +60,27 @@ router.get("/signin/post", async (req, res) => {
       process.env.EMAIL_JWT_PASSWORD!,
     ) as JwtPayload;
     if (decoded.userId) {
+      const user = await client.user.findFirst({
+        where: {
+          id: decoded.userId,
+        },
+      });
+
+      if (!user) {
+        res.status(411).json({
+          message: "Incorrect token",
+        });
+        return;
+      }
+
       const token = jwt.sign(
         {
           userId: decoded.userId,
+          role: user.role,
         },
         process.env.USER_JWT_PASSWORD!,
       );
+
       res.json({
         token,
       });
